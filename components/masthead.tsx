@@ -1,10 +1,32 @@
 import Image from 'next/image';
+import { useContext, useEffect, useRef } from 'react';
+import { ScrollContext } from '../utils/scroll-observer';
 
 type Props = {};
 
 const MastHead: React.FC = ({}: Props) => {
+  const refContainer = useRef<HTMLDivElement>(null);
+  const { scrollY } = useContext(ScrollContext);
+
+  let progress = 0;
+
+  const { current: elContainer } = refContainer;
+  if (elContainer) {
+    progress = Math.min(1, scrollY / elContainer.clientHeight);
+  }
+
+  useEffect(() => {
+    console.log({ scrollY });
+  }, [scrollY]);
+
   return (
-    <div className='min-h-screen flex flex-col items-center justify-center text-white'>
+    <div
+      ref={refContainer}
+      style={{
+        transform: `translateY(-${progress * 20}vh)`,
+      }}
+      className='min-h-screen flex flex-col items-center justify-center text-white sticky top-0 -z-10'
+    >
       <video
         autoPlay
         muted
