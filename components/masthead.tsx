@@ -12,8 +12,8 @@ const MastHead: React.FC = ({}: Props) => {
         loop
         className='absolute w-full h-full object-cover'
       >
-        <source src='/assets/masthead_bg.mp4' type='video/mp4' />
-        <source src='/assets/masthead_bg.webm' type='video/webm; codecs=vp9' />
+        <source src='/assets/masthead-bg.mp4' type='video/mp4' />
+        {/* <source src='/assets/masthead_bg.webm' type='video/webm; codecs=vp9' /> */}
       </video>
       <div className={`flex-grow-0 pt-10 transition-opacity duration-1000`}>
         <Image
