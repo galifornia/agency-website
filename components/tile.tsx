@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { ScrollContext } from "../utils/scroll-observer";
 
 interface WrapperProps {
@@ -37,23 +37,55 @@ export const TileWrapper: React.FC<WrapperProps> = ({
 
     currentPage = percentY * numOfPages;
   }
+
   return (
     <TileContext.Provider value={{ numOfPages, currentPage }}>
-      <div ref={refContainer} className="relative  text-white">
+      <div
+        ref={refContainer}
+        className="relative text-white"
+        style={{
+          height: numOfPages * 100 + "vh",
+        }}
+      >
         {children}
       </div>
     </TileContext.Provider>
   );
 };
 
-export const TileBackground: React.FC = () => (
-  <div className="absolute h-full w-full"></div>
-);
+export const TileBackground: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => <div className="absolute h-full w-full bg-black">{children}</div>;
 
 export const TileContent: React.FC<{ children: React.ReactNode }> = ({
   children,
-}) => (
-  <div className="sticky top-0 h-screen bg-black overflow-hidden">
-    {children}
-  </div>
-);
+}) => <div className="sticky top-0 h-screen overflow-hidden">{children}</div>;
+
+interface Props {
+  page: number;
+  renderContent: (props: { progress: number }) => any;
+}
+
+export const Tile: React.FC<Props> = ({ page, renderContent }) => {
+  const { currentPage, numOfPages } = useContext(TileContext);
+  const progress = Math.max(0, currentPage - page);
+  const refContainer = useRef<HTMLDivElement>(null);
+
+  let opacity = Math.min(1, Math.max(0, progress * 4));
+  if (progress > 0.85 && page < numOfPages - 1) {
+    opacity = Math.max(0, (1.0 - progress) * 4);
+  }
+
+  return (
+    <div
+      ref={refContainer}
+      className="absolute top-0 w-full"
+      style={{
+        pointerEvents: progress >= 0 || progress >= 1 ? "none" : undefined,
+        opacity,
+      }}
+    >
+      {renderContent({ progress })}
+    </div>
+  );
+};
