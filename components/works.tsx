@@ -1,5 +1,12 @@
-import { Tile, TileBackground, TileContent, TileWrapper } from "./tile";
-import { WorkBackground, WorkContainer, WorkLeft, WorkRight } from "./work";
+import Image from 'next/image';
+import { Tile, TileBackground, TileContent, TileWrapper } from './tile';
+import {
+  WorkBackground,
+  WorkContainer,
+  WorkLeft,
+  WorkLink,
+  WorkRight,
+} from './work';
 
 type Props = {};
 
@@ -15,12 +22,19 @@ const Works: React.FC<Props> = () => {
             <WorkContainer>
               <WorkLeft progress={progress}>
                 <div>We built</div>
-                <div className="text-4xl md:text-5xl font-semibold tracking-tight">
-                  Pink Panda&apos;s app
+                <div className='text-4xl md:text-5xl font-semibold tracking-tight'>
+                  <WorkLink href='https://pinkpanda.io/'>Pink Panda</WorkLink>
+                  &apos;s app.
                 </div>
               </WorkLeft>
               <WorkRight progress={progress}>
-                <div>AGAIN</div>
+                <Image
+                  src='/assets/works/pinkpanda.webp'
+                  layout='responsive'
+                  width={840}
+                  height={1620}
+                  alt='Pink Panda app in mobile'
+                />
               </WorkRight>
             </WorkContainer>
           )}
@@ -32,10 +46,22 @@ const Works: React.FC<Props> = () => {
           renderContent={({ progress }) => (
             <WorkContainer>
               <WorkLeft progress={progress}>
-                <div>We craft</div>
+                <div>We made</div>
+                <div className='text-4xl md:text-5xl font-semibold tracking-tight'>
+                  <WorkLink href='https://steakwallet.fi/'>
+                    Steakwallet
+                  </WorkLink>
+                  &nbsp;faster.
+                </div>
               </WorkLeft>
               <WorkRight progress={progress}>
-                <div>AGAIN</div>
+                <Image
+                  src='/assets/works/steakwallet.webp'
+                  layout='responsive'
+                  width={840}
+                  height={1620}
+                  alt='Steakwallet demo in mobile'
+                />
               </WorkRight>
             </WorkContainer>
           )}
@@ -47,10 +73,20 @@ const Works: React.FC<Props> = () => {
           renderContent={({ progress }) => (
             <WorkContainer>
               <WorkLeft progress={progress}>
-                <div>We do</div>
+                <div>We helped</div>
+                <div className='text-4xl md:text-5xl font-semibold tracking-tight'>
+                  <WorkLink href='https://showtime.io/'>Showtime</WorkLink> ship
+                  faster.
+                </div>
               </WorkLeft>
               <WorkRight progress={progress}>
-                <div>AGAIN</div>
+                <Image
+                  src='/assets/works/showtime.webp'
+                  layout='responsive'
+                  width={840}
+                  height={1620}
+                  alt='Showtime demo in mobile'
+                />
               </WorkRight>
             </WorkContainer>
           )}
