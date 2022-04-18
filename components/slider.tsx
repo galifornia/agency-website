@@ -1,4 +1,4 @@
-import { useCallback, useContext, useRef } from 'react';
+import { useCallback, useContext, useEffect, useRef, useState } from 'react';
 import { SizeContext } from '../utils/size-observer';
 import useAnimationFrame from '../utils/use-animation-frame';
 
@@ -30,11 +30,10 @@ const Slider: React.FC<Props> = ({
   initialOffsetX,
 }) => {
   const { innerWidth } = useContext(SizeContext);
+  const [enabled, setEnabled] = useState(false);
   const refScrollX = useRef<number>(initialOffsetX);
   const refContainer = useRef<HTMLDivElement>(null);
   const refContent = useRef<HTMLDivElement>(null);
-
-  const enabled = innerWidth < contentWidth;
 
   useAnimationFrame(
     enabled,
@@ -46,13 +45,20 @@ const Slider: React.FC<Props> = ({
         refScrollX.current += 0.5;
         elContainer.scrollLeft = refScrollX.current;
 
-        if (elContainer.scrollLeft >= elContent.clientWidth) {
+        if (
+          elContainer.scrollLeft >=
+          elContainer.scrollWidth - elContainer.clientWidth
+        ) {
           refScrollX.current = 0;
           elContainer.scrollLeft = 0;
         }
       }
     }, [])
   );
+
+  useEffect(() => {
+    setEnabled(innerWidth < contentWidth);
+  }, [innerWidth, contentWidth]);
 
   return (
     <div

@@ -9,7 +9,7 @@ const ClientLogos: React.FC<Props> = ({}) => {
       <Slider className='' contentWidth={1290} initialOffsetX={0}>
         <SliderItem width={100}>
           <Image
-            src='/assets/trustedby/audubon.png'
+            src='/assets/trustedby/image.png'
             width={150}
             height={50}
             alt='Audubon'
@@ -54,15 +54,6 @@ const ClientLogos: React.FC<Props> = ({}) => {
         </SliderItem>
         <SliderItem width={150}>
           <Image
-            src='/assets/trustedby/image.png'
-            width={150}
-            height={50}
-            alt='image'
-            objectFit='contain'
-          />
-        </SliderItem>
-        <SliderItem width={150}>
-          <Image
             src='/assets/trustedby/litentry.png'
             width={150}
             height={50}
@@ -85,6 +76,15 @@ const ClientLogos: React.FC<Props> = ({}) => {
             width={150}
             height={50}
             alt='picnic'
+            objectFit='contain'
+          />
+        </SliderItem>
+        <SliderItem width={150}>
+          <Image
+            src='/assets/trustedby/wallet-connect.png'
+            width={150}
+            height={50}
+            alt='wallet-connect'
             objectFit='contain'
           />
         </SliderItem>
@@ -141,6 +141,42 @@ const ClientLogos: React.FC<Props> = ({}) => {
             width={150}
             height={50}
             alt='snap-calorie'
+            objectFit='contain'
+          />
+        </SliderItem>
+        <SliderItem width={150}>
+          <Image
+            src='/assets/trustedby/status.png'
+            width={150}
+            height={50}
+            alt='status'
+            objectFit='contain'
+          />
+        </SliderItem>
+        <SliderItem width={150}>
+          <Image
+            src='/assets/trustedby/steakwallet.png'
+            width={150}
+            height={50}
+            alt='steakwallet'
+            objectFit='contain'
+          />
+        </SliderItem>{' '}
+        <SliderItem width={150}>
+          <Image
+            src='/assets/trustedby/stori.png'
+            width={150}
+            height={50}
+            alt='stori'
+            objectFit='contain'
+          />
+        </SliderItem>
+        <SliderItem width={150}>
+          <Image
+            src='/assets/trustedby/tocsen.png'
+            width={150}
+            height={50}
+            alt='tocsen'
             objectFit='contain'
           />
         </SliderItem>
