@@ -1,6 +1,20 @@
 import { useContext, useRef } from 'react';
 import { SizeContext } from '../utils/size-observer';
 
+interface ItemProps {
+  width: number;
+  children: React.ReactNode;
+}
+export const SliderItem: React.FC<ItemProps> = ({ width, children }) => {
+  return (
+    <div
+      className='inline-flex justify-center items-center mx-4'
+      style={{ width }}
+    >
+      {children}
+    </div>
+  );
+};
 interface Props {
   initialOffsetX: number;
   className: string;
