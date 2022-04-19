@@ -27,10 +27,8 @@ const TrustedBy: React.FC<Props> = () => {
       </section>
 
       <section>
-        <div>Testimonials</div>
-        <div className='flex-1 bg-black text-white'>
-          <Testimonials />
-        </div>
+        <Testimonials />
+        <div className='flex-1 bg-black text-white'></div>
       </section>
     </>
   );
