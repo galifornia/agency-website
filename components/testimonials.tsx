@@ -6,7 +6,7 @@ type Props = {};
 
 const Testimonials: React.FC<Props> = () => {
   return (
-    <Carousel className='bg-black text-white py-10 lg:py-20'>
+    <Carousel className='bg-black text-white pt-10 lg:pt-20'>
       <CarouselItem index={0}>
         <Review by='Axel (Showtime)'>
           Margelo and Showtime both share the love for high-quality software,
