@@ -59,7 +59,7 @@ const MastHead: React.FC = ({}: Props) => {
         }`}
       >
         <Image
-          src='/assets/arrow-down.svg'
+          src='/assets/arrow-down.webp'
           width={188 / 4}
           height={105 / 4}
           alt='Scroll down arrow'
