@@ -9,6 +9,9 @@ const ghAccounts: { readonly [username: string]: number } = {
   shergin: 1,
 };
 
+const ghAuthUsername = process.env['GITHUB_USERNAME'] || '';
+const ghAuthToken = process.env['GITHUB_PERSONAL_ACCESS_TOKEN'] || '';
+
 async function getNumOfCommits() {
   try {
     const baseUrl = `https://api.github.com/repos/facebook/react-native/commits`;
@@ -26,6 +29,10 @@ async function getNumOfCommits() {
               since: '2000-01-01',
               perPage,
               page,
+            },
+            auth: {
+              username: ghAuthUsername,
+              password: ghAuthToken,
             },
           });
           num += commits.length;
