@@ -26,7 +26,7 @@ const Home: NextPage = () => {
       <AboutUs />
       <Skills
         commits={data?.commits.toLocaleString('en-US')}
-        downloads={data?.downloads.toLocaleString('en-US')}
+        downloads={Math.trunc(data?.downloads / 1000000) + ' million'}
       />
       <Works />
       <TrustedBy />

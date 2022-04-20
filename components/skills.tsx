@@ -3,8 +3,8 @@ import styles from '../styles/skills.module.css';
 import { ScrollContext } from '../utils/scroll-observer';
 
 type Props = {
-  commits: number;
-  downloads: number;
+  commits: string;
+  downloads: string;
 };
 
 const opacityForBlock = (sectionProgress: number, blockNo: number): number => {
