@@ -4,6 +4,7 @@ import { ScrollContext } from '../utils/scroll-observer';
 
 type Props = {
   commits: number;
+  downloads: number;
 };
 
 const opacityForBlock = (sectionProgress: number, blockNo: number): number => {
@@ -12,7 +13,7 @@ const opacityForBlock = (sectionProgress: number, blockNo: number): number => {
   return 0.2;
 };
 
-const Skills: React.FC<Props> = ({ commits = 284 }) => {
+const Skills: React.FC<Props> = ({ commits = 284, downloads = 25634 }) => {
   const { scrollY } = useContext(ScrollContext);
   const refContainer = useRef<HTMLDivElement>(null);
   const numOfPages = 3;
@@ -65,7 +66,7 @@ const Skills: React.FC<Props> = ({ commits = 284 }) => {
             }}
           >
             We&apos;re mantaining some of the most popular open-source projects,
-            with over <strong>1234</strong> downloads.
+            with over <strong>{downloads} downloads</strong> .
           </span>
         </div>
       </div>
