@@ -12,6 +12,13 @@ const packages = [
   'react-native-blurhash',
 ];
 
+// scoped packages are not supported in bulk lookups
+const scopedPackages = [
+  '@gorhom/bottom-sheet',
+  '@gorhom/animated-tabbar',
+  '@gorhom/portal',
+];
+
 const ghAccounts: { readonly [username: string]: number } = {
   javache: 1,
 };
@@ -28,6 +35,10 @@ async function getNumOfDownloads() {
     const baseUrl = `https://api.npmjs.org/downloads/point/${since}:${now}`;
     const url = `${baseUrl}/${packages.join(',')}`;
     const { data: stats } = await axios.get(url);
+    for (let scopedPackage of scopedPackages) {
+      const { data } = await axios.get(`${baseUrl}/${scopedPackage}`);
+      stats[scopedPackage] = data;
+    }
     const downloads = Object.keys(stats).reduce(
       (num, key) => num + stats[key].downloads,
       0
