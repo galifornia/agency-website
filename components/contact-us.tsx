@@ -1,8 +1,71 @@
+import axios from 'axios';
 import Image from 'next/image';
+import { useCallback, useState } from 'react';
 
 interface Props {}
 
 const ContactUs: React.FC<Props> = ({}) => {
+  const [status, setStatus] = useState({
+    submitted: false,
+    submitting: false,
+    info: { error: false, msg: null },
+  });
+
+  const [inputs, setInputs] = useState({
+    companyName: '',
+    email: '',
+    message: '',
+  });
+
+  const handleOnChange = useCallback((e) => {
+    e.persist();
+    setInputs({ ...inputs, [e.currentTarget.id]: e.currentTarget.value });
+    setStatus({
+      submitted: false,
+      submitting: false,
+      info: { error: false, msg: null },
+    });
+  }, []);
+
+  const handleServerResponse = useCallback((ok, msg) => {
+    if (ok) {
+      setStatus({
+        submitted: true,
+        submitting: false,
+        info: { error: false, msg },
+      });
+      setInputs({ companyName: '', email: '', message: '' });
+    } else {
+      setStatus({
+        submitted: false,
+        submitting: false,
+        info: { error: true, msg },
+      });
+    }
+  }, []);
+
+  const handleSubmit = useCallback((e) => {
+    e.preventDefault();
+    setStatus((prevStatus) => ({ ...prevStatus, submitting: true }));
+    axios({
+      method: 'POST',
+      url: process.env.NEXT_PUBLIC_CONTACT_FORM_ENDPOINT_URL,
+      data: inputs,
+    })
+      .then((_response) => {
+        handleServerResponse(
+          true,
+          'Thank you! Your message has been submitted.'
+        );
+      })
+      .catch((e) =>
+        handleServerResponse(
+          false,
+          "Something went wrong and your message wasn't sent. " + e
+        )
+      );
+  }, []);
+
   return (
     <div className='bg-black text-white flex flex-col justify-center items-center pt-10 min-h-screen'>
       <div className='pb-10 '>
