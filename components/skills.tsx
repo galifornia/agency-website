@@ -66,7 +66,7 @@ const Skills: React.FC<Props> = ({ commits = 284, downloads = 25634 }) => {
             }}
           >
             We&apos;re mantaining some of the most popular open-source projects,
-            with over <strong>{downloads} downloads</strong> .
+            with over <strong>{downloads} downloads</strong>.
           </span>
         </div>
       </div>

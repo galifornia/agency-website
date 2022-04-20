@@ -24,7 +24,10 @@ const Home: NextPage = () => {
       </Head>
       <MastHead />
       <AboutUs />
-      <Skills commits={data?.commits} />
+      <Skills
+        commits={data?.commits.toLocaleString('en-US')}
+        downloads={data?.downloads.toLocaleString('en-US')}
+      />
       <Works />
       <TrustedBy />
       <ContactUs />
