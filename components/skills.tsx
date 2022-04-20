@@ -12,7 +12,7 @@ const opacityForBlock = (sectionProgress: number, blockNo: number): number => {
   return 0.2;
 };
 
-const Skills: React.FC<Props> = ({ commits = 0 }) => {
+const Skills: React.FC<Props> = ({ commits = 284 }) => {
   const { scrollY } = useContext(ScrollContext);
   const refContainer = useRef<HTMLDivElement>(null);
   const numOfPages = 3;
