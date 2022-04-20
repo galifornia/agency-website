@@ -1,8 +1,10 @@
-import { useContext, useEffect, useRef, useState } from "react";
-import styles from "../styles/skills.module.css";
-import { ScrollContext } from "../utils/scroll-observer";
+import { useContext, useEffect, useRef, useState } from 'react';
+import styles from '../styles/skills.module.css';
+import { ScrollContext } from '../utils/scroll-observer';
 
-type Props = {};
+type Props = {
+  commits: number;
+};
 
 const opacityForBlock = (sectionProgress: number, blockNo: number): number => {
   const progress = sectionProgress - blockNo;
@@ -10,7 +12,7 @@ const opacityForBlock = (sectionProgress: number, blockNo: number): number => {
   return 0.2;
 };
 
-const Skills: React.FC<Props> = ({}) => {
+const Skills: React.FC<Props> = ({ commits = 0 }) => {
   const { scrollY } = useContext(ScrollContext);
   const refContainer = useRef<HTMLDivElement>(null);
   const numOfPages = 3;
@@ -36,9 +38,9 @@ const Skills: React.FC<Props> = ({}) => {
   }, [refContainer, scrollY]);
 
   return (
-    <div className="bg-black text-white " ref={refContainer}>
-      <div className="min-h-screen max-w-5xl mx-auto px-10 lg:px-20 py-24 md:py-28 lg:py-36 flex flex-col justify-center items-center text-4xl md:text-6xl lg:text-7xl tracking-tight font-semibold">
-        <div className="leading-[1.15]">
+    <div className='bg-black text-white ' ref={refContainer}>
+      <div className='min-h-screen max-w-5xl mx-auto px-10 lg:px-20 py-24 md:py-28 lg:py-36 flex flex-col justify-center items-center text-4xl md:text-6xl lg:text-7xl tracking-tight font-semibold'>
+        <div className='leading-[1.15]'>
           <div
             className={styles.skillText}
             style={{
@@ -48,13 +50,13 @@ const Skills: React.FC<Props> = ({}) => {
             We know our tools inside out.
           </div>
           <span
-            className={`${styles.skillText} inline-block after:content-['-']`}
+            className={`${styles.skillText} inline-block after:content-['']`}
             style={{
               opacity: opacityForBlock(progress, 1),
             }}
           >
-            Our team has contributed 123 commits to React Native core, powering
-            thousandas of apps worldwide.
+            Our team has contributed {commits} commits to React Native core,
+            powering thousands of apps worldwide.
           </span>
           <span
             className={`${styles.skillText} inline-block`}

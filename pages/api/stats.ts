@@ -6,7 +6,7 @@ type Data = {
 };
 
 const ghAccounts: { readonly [username: string]: number } = {
-  shergin: 1,
+  javache: 1,
 };
 
 const ghAuthUsername = process.env['GITHUB_USERNAME'] || '';
@@ -52,6 +52,8 @@ export default async function handler(
   res: NextApiResponse<Data>
 ) {
   const commits = await getNumOfCommits();
+  // cache result for 1 day
+  res.setHeader('Cache-Control', 's-maxage=86400');
   res.status(200).json({
     commits,
   });
